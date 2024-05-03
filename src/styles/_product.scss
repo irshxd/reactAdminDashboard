@@ -1,0 +1,129 @@
+@import "mixin";
+@import "dashboard";
+
+.dashboardProductBox {
+  background-color: beige;
+  padding: 2rem;
+  overflow: auto;
+  @include square(100%);
+  border-radius: 10px;
+}
+.addProduct {
+  position: fixed;
+  top: 1rem;
+  right: 2rem;
+  @include flex(row, center, center, 0);
+  @include square(2.5rem);
+  background-color: brown;
+  border-radius: 50%;
+  color: beige;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+// new product
+.productManagement {
+  @include flex(row, center, unset);
+  padding: 4rem;
+  > section {
+    overflow-y: auto;
+    width: 100%;
+    height: 85vh;
+    max-width: 500px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.26);
+    background-color: beige;
+    padding: 3rem;
+    @include flex(column, unset, unset, 1rem);
+    position: relative;
+    border-radius: 10px;
+    > h2 {
+      @include heading(2px);
+      text-align: center;
+    }
+    > img {
+      @include square(100%);
+      object-fit: cover;
+    }
+    > strong {
+      font-weight: 300;
+    }
+    > span {
+      position: absolute;
+      right: 2rem;
+      top: 2rem;
+    }
+    > p {
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    h3 {
+      font-size: 2rem;
+      text-align: center;
+    }
+  }
+  > article {
+    font-weight: bold;
+    height: 85vh;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    background-color: beige;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.26);
+
+    > form {
+      @include flex(column, unset, center, 2rem);
+      > h2 {
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 1rem;
+      }
+      > img {
+        @include square(5rem);
+        object-fit: cover;
+        border-radius: 5px;
+      }
+      > div {
+        width: 100%;
+        position: relative;
+        > label {
+          position: absolute;
+          left: 0;
+          top: -1.5rem;
+        }
+        > input {
+          padding: 1rem;
+          border: 1px, solid, rgba(13, 13, 13, 0.19);
+          @include inputStyle(
+            100%,
+            1rem,
+            unset,
+            1px solid rgba(13, 13, 13, 0.19)
+          );
+          border-radius: 10px;
+        }
+        input::file-selector-button {
+          font-weight: bold;
+          background-color: brown;
+          padding: 0.5em;
+          color: beige;
+          border: 1px solid grey;
+          border-radius: 5px;
+        }
+      }
+      > button {
+        padding-top: 0.8rem;
+        padding-right: 2rem;
+        padding-bottom: 0.8rem;
+        padding-left: 2rem;
+        border: none;
+        background-color: brown;
+        color: beige;
+        border-radius: 5px;
+        font-size: 1.1rem;
+        cursor: pointer;
+      }
+    }
+  }
+}

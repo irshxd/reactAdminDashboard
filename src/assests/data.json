@@ -1,0 +1,64 @@
+{
+  "categories": [
+    {
+      "value": 20,
+      "heading": "Horizon"
+    },
+
+    {
+      "value": 100,
+      "heading": "GTA"
+    },
+    {
+      "value": 60,
+      "heading": "RDR2"
+    },
+    {
+      "value": 70,
+      "heading": "Genshin impact"
+    },
+    {
+      "value": 10,
+      "heading": "Stray"
+    },
+    {
+      "value": 24,
+      "heading": "Nova legacy"
+    },
+    {
+      "value": 89,
+      "heading": "Horizon chase"
+    }
+  ],
+
+  "transaction": [
+    {
+      "id": "Abc001",
+      "amount": 4000,
+      "quantity": 4,
+      "discount": 300,
+      "status": "Processing"
+    },
+    {
+      "id": "Abc002",
+      "amount": 5100,
+      "quantity": 2,
+      "discount": 900,
+      "status": "Processing"
+    },
+    {
+      "id": "Abc003",
+      "amount": 13000,
+      "quantity": 91,
+      "discount": 0,
+      "status": "Shipped"
+    },
+    {
+      "id": "Abc004",
+      "amount": 2300,
+      "quantity": 4,
+      "discount": 2000,
+      "status": "Processing"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+.chart-container {
+  background-color: beige;
+  padding: 1rem;
+  overflow-y: auto;
+  > h1 {
+    margin: 0 0 3rem 2rem;
+    text-align: center;
+  }
+  > section {
+    width: 80%;
+    margin: 2rem auto;
+    > div {
+      max-width: 25rem;
+      margin: auto;
+      margin-top: 6rem;
+      margin-bottom: -1rem;
+    }
+    > h2 {
+      margin: 1rem 0;
+      text-align: center;
+      @include heading(2px);
+    }
+  }
+}
+.chart-container-pie {
+  background-color: beige;
+  padding: 1rem;
+  overflow-y: auto;
+  align-items: center;
+  .userChart {
+    height: 35rem;
+    width: 35rem;
+    align-items: center;
+  }
+}
