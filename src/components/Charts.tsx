@@ -10,7 +10,6 @@ import {
   ChartOptions,
   ArcElement,
 } from "chart.js";
-import { useEffect, useState } from "react";
 import { Bar, Doughnut } from "react-chartjs-2";
 // import faker from "faker";
 
@@ -81,8 +80,8 @@ export const BarChart = ({
 interface doughnutChartProps {
   labels: string[];
   data: number[];
-  title1: string;
-  title2: string;
+  title1?: string;
+  title2?: string;
   backgroundColor: string[];
   cutout?: number;
   legend?: boolean;
@@ -93,7 +92,7 @@ export const DoughnutChart = ({
   data,
   backgroundColor,
   cutout,
-  legends = true,
+  // legends = true,
   offset,
 }: doughnutChartProps) => {
   const doughnutData: ChartData<"doughnut", number[], string> = {

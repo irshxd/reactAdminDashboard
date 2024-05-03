@@ -1,8 +1,6 @@
 import { Link, useLocation, Location } from "react-router-dom";
 import {
-  RiCoupon2Fill,
   RiCoupon3Fill,
-  RiDashboard2Fill,
   RiDashboardFill,
   RiShoppingBag3Fill,
 } from "react-icons/ri";

@@ -1,3 +1,4 @@
+import React from "react";
 import {
   AiOutlineSortAscending,
   AiOutlineSortDescending,
@@ -10,7 +11,7 @@ import {
   TableOptions,
 } from "react-table";
 
-function TableHOC<T extends Object>(
+function TableHOC<T extends Record<string, unknown>>(
   columns: Column<T>[],
   data: T[],
   containerClassname: string,
@@ -86,7 +87,7 @@ function TableHOC<T extends Object>(
             <button disabled={!canPreviousPage} onClick={previousPage}>
               Prev
             </button>
-            <span>{`${pageIndex + 1} - ${pageCount}`}</span>
+            <span>{`${pageIndex + 1} of ${pageCount}`}</span>
             <button disabled={!canNextPage} onClick={nextPage}>
               Next
             </button>
