@@ -11,6 +11,7 @@ interface DataType {
   quantity: number;
   status: ReactElement;
   action: ReactElement;
+  [key: string]: unknown;
 }
 const columns: Column<DataType>[] = [
   { Header: "User", accessor: "user" },

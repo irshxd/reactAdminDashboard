@@ -12,6 +12,7 @@ interface DataType {
   gender: string;
   role: string;
   action: ReactElement;
+  [key: string]: unknown;
 }
 const columns: Column<DataType>[] = [
   { Header: "Avatar", accessor: "avatar" },

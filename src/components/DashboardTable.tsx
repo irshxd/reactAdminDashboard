@@ -14,6 +14,7 @@ interface DataType {
   discount: number;
   amount: number;
   status: string;
+  [key: string]: unknown;
 }
 const DashboardTable = ({ data = [] }: { data: DataType[] }) => {
   return TableHOC<DataType>(

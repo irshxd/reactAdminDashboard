@@ -1,98 +1,61 @@
-import React from "react";
-import {
-  AiOutlineSortAscending,
-  AiOutlineSortDescending,
-} from "react-icons/ai";
 import {
   Column,
-  usePagination,
-  useSortBy,
   useTable,
   TableOptions,
+  TableInstance,
+  Row,
+  HeaderGroup,
+  Cell,
+  ColumnInstance,
 } from "react-table";
 
 function TableHOC<T extends Record<string, unknown>>(
   columns: Column<T>[],
   data: T[],
   containerClassname: string,
-  heading: string,
-  showPagination: boolean = false
+  heading: string
 ) {
   return function HOC() {
     const options: TableOptions<T> = {
       columns,
       data,
-      initialState: {
-        pageSize: 6,
-      },
     };
 
-    const {
-      getTableProps,
-      getTableBodyProps,
-      headerGroups,
-      page,
-      prepareRow,
-      nextPage,
-      pageCount,
-      state: { pageIndex },
-      previousPage,
-      canNextPage,
-      canPreviousPage,
-    } = useTable(options, useSortBy, usePagination);
+    const tableInstance = useTable(options) as TableInstance<T>;
+
+    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+      tableInstance;
 
     return (
       <div className={containerClassname}>
-        <h2 className="heading">{heading}</h2>
+        <h2>{heading}</h2>
 
         <table className="table" {...getTableProps()}>
           <thead>
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                    {column.render("Header")}
-                    {column.isSorted && (
-                      <span>
-                        {" "}
-                        {column.isSortedDesc ? (
-                          <AiOutlineSortDescending />
-                        ) : (
-                          <AiOutlineSortAscending />
-                        )}
-                      </span>
-                    )}
-                  </th>
+            {headerGroups.map((headerGroup: HeaderGroup<T>) => (
+              <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
+                {headerGroup.headers.map((column: ColumnInstance<T>) => (
+                  <th key={column.id}>{column.render("Header")}</th>
                 ))}
               </tr>
             ))}
           </thead>
           <tbody {...getTableBodyProps()}>
-            {page.map((row) => {
+            {rows.map((row: Row<T>) => {
               prepareRow(row);
 
               return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map((cell) => (
-                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                <tr {...row.getRowProps()} key={row.id}>
+                  {row.cells.map((cell: Cell<T>) => (
+                    <td {...cell.getCellProps()} key={cell.column.id}>
+                      {cell.render("Cell")}
+                    </td>
                   ))}
                 </tr>
               );
             })}
           </tbody>
         </table>
-
-        {showPagination && (
-          <div className="table-pagination">
-            <button disabled={!canPreviousPage} onClick={previousPage}>
-              Prev
-            </button>
-            <span>{`${pageIndex + 1} of ${pageCount}`}</span>
-            <button disabled={!canNextPage} onClick={nextPage}>
-              Next
-            </button>
-          </div>
-        )}
       </div>
     );
   };

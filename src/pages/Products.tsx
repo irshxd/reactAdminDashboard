@@ -4,6 +4,7 @@ import TableHOC from "../components/TableHOC";
 import { Column } from "react-table";
 import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
+// import { DataType } from "./Dashboard"; // Assuming DataType is exported from a separate file
 
 const img =
   "https://images.unsplash.com/photo-1521093470119-a3acdc43374a?q=80&w=1651&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
@@ -17,6 +18,7 @@ interface DataType {
   price: string;
   stock: number;
   action: ReactElement;
+  [key: string]: unknown;
 }
 const columns: Column<DataType>[] = [
   { Header: "Photo", accessor: "photo" },
@@ -103,10 +105,16 @@ const arr: DataType[] = [
 
 const product = () => {
   const [data] = useState<DataType[]>(arr);
-  const Table = useCallback(
-    TableHOC<DataType>(columns, data, "dashboardProductBox", "Products", true),
-    []
-  );
+
+  const Table = useCallback(() => {
+    return TableHOC<DataType>(
+      columns,
+      data,
+      "dashboardProductBox",
+      "Products"
+    )();
+  }, [data]); // Add data as a dependency to recompute Table when data changes
+
   return (
     <div className="adminContainer">
       <AdminSidebar />
